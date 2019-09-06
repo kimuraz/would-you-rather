@@ -1,0 +1,24 @@
+@import './variables.scss';
+
+.btn {
+  padding: 10px 20px;
+  font-size: .825rem;
+  border-radius: 2px;
+  transition: all ease 1s;
+}
+
+.btn-primary {
+  color: $white;
+  background-color: $primary;
+  &:hover {
+    background-color: $light-primary;
+  }
+}
+
+.btn-secondary {
+  color: $white;
+  background-color: $secondary;
+  &:hover {
+    background-color: $light-secondary;
+  }
+}
