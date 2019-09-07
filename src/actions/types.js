@@ -1,0 +1,7 @@
+export const SET_AUTH_USER = 'SET_AUTH_USER';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const VOTE_QUESTION = 'VOTE_QUESTION';
+
+export const ADD_QUESTION = 'ADD_QUESTION';
+export const SET_QUESTIONS = 'SET_QUESTIONS';
+export const COMPUTE_QUESTION = 'COMPUTE_QUESTION';
