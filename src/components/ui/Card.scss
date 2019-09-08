@@ -1,15 +1,22 @@
 @import './variables';
 
-
 .card {
-  border: 1px solid $border;
-  min-width: 400px;
+  border: 1px solid $light-primary;
+  width: 400px;
+  box-shadow: 0 0 2px $grey;
+  border-radius: 2px;
   .card-header {
-    border-bottom: 1px solid $border;
-    background-color: $light-bg;
-    padding: 5px 10px;
+    border-bottom: 1px solid $light-primary;
+    background-color: $grey-bg;
+    padding: 5px;
+    text-align: center;
+    color: $primary;
   }
   .card-body {
     padding: 10px;
-  } 
+    background-color: $white;
+    > * {
+      width: 100%;
+    }
+  }
 }

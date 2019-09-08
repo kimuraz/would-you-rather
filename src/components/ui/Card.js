@@ -1,18 +1,19 @@
 import React from 'react';
 
+import './Card.scss';
 
 class Card extends React.Component {
-  return (
-    <div className="card">
-      <header className="card-header">
-        <h4>{this.props.title}</h4>
-      </header>
+  render() {
+    return (
+      <div className={`card ${this.props.className}`}>
+        <header className="card-header">
+          <h3>{this.props.title}</h3>
+        </header>
 
-      <div className="card-body">
-        {this.props.children}
+        <div className="card-body">{this.props.children}</div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Card;

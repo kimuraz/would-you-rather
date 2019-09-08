@@ -4,7 +4,10 @@
   padding: 10px 20px;
   font-size: .825rem;
   border-radius: 2px;
+  border: 0;
+  cursor: pointer;
   transition: all ease 1s;
+  outline: none;
 }
 
 .btn-primary {
@@ -17,8 +20,8 @@
 
 .btn-secondary {
   color: $white;
-  background-color: $secondary;
+  background-color: $light-secondary;
   &:hover {
-    background-color: $light-secondary;
+    background-color: $secondary;
   }
 }
