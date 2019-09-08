@@ -6,13 +6,14 @@ const questions = (state = {}, action) => {
       return {...state, [action.question.id]: {...action.question}};
     case COMPUTE_QUESTION:
       const {vote} = action;
+      console.log(vote, state, state.questions[vote.qid]);
       return {
         ...state,
-        [vote.question]: {
-          ...state[vote.question],
-          [vote.option]: {
-            votes: [...state[vote.question][vote.option].votes, vote.user],
-            text: state[vote.question][vote.option].text,
+        [vote.qid]: {
+          ...state.questions[vote.qid],
+          [vote.answer]: {
+            votes: [...state.questions[vote.qid][vote.answer].votes, vote.authedUser],
+            text: state.questions[vote.qid][vote.answer].text,
           },
         },
       };

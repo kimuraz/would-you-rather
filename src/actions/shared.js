@@ -1,13 +1,12 @@
-import { getInitialData } from '../utils/api';
-import { setQuestions } from './question'; 
-import { receiveUsers } from './users';
+import {getInitialData} from '../utils/api';
+import {setQuestions} from './questions';
+import {receiveUsers} from './users';
 
-
-const loadInitialData = () => {
+export const loadInitialData = () => {
   return dispatch => {
-    return getInitialData().then(({ users, questions }) => {
+    return getInitialData().then(({users, questions}) => {
       dispatch(setQuestions(questions));
-      dispatch(receiveUsers(users)); 
+      dispatch(receiveUsers(users));
     });
   };
-}
+};

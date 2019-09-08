@@ -1,0 +1,13 @@
+@import '../ui/variables';
+
+.question-list {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 45vw;
+    border: 1px solid $grey;
+    margin: 5px;
+  }
+}

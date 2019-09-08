@@ -2,15 +2,15 @@ import { saveQuestion, saveQuestionAnswer } from '../utils/api';
 
 import {ADD_QUESTION, SET_QUESTIONS, COMPUTE_QUESTION} from './types';
 
-export const addQuestion = question => {
+export const addQuestion = question => dispatch => {
   return saveQuestion().then(() => {
     dispatch({type: ADD_QUESTION, question});
   });
 };
 
 export const computeQuestion = vote => dispatch => {
-  return saveQuestionAnswer().then(() => {
-    dispatch({type: COMPUTE_QUESTION, vote});
+  return saveQuestionAnswer(vote).then(() => {
+    return dispatch({type: COMPUTE_QUESTION, vote});
   });
 };
 
