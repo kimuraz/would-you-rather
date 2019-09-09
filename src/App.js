@@ -9,15 +9,21 @@ import {connect} from 'react-redux';
 import RedirectControl from './components/RedirectControl';
 import Login from './components/Login';
 import Home from './components/Home';
+import QuestionForm from './components/QuestionForm';
 import {Container, NavBar} from './components/ui';
 
 import {loadInitialData} from './actions/shared';
+import {setAuthUser} from './actions/users';
 
 import './App.scss';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.loading && this.props.dispatch(loadInitialData());
+  }
+
+  logout = () => {
+    this.props.dispatch(setAuthUser(null));
   }
 
   render() {
@@ -28,17 +34,19 @@ class App extends React.Component {
             {this.props.authUser && (
               <>
                 <Link to="/home" activeClassName="active">Home</Link>
-                <Link to="/newQuestion" activeClassName="active">New Question</Link>
-                <Link to="/leaderBoard" activeClassName="active">Leader Board</Link>
+                <Link to="/add" activeClassName="active">New Question</Link>
+                <Link to="/leaderboard" activeClassName="active">Leader Board</Link>
+                <Link to="/" exact onClick={this.logout}>Logout</Link>
               </>
             )}
           </NavBar>
           <Container>
             {!this.props.loading ? (
               <>
-                <Route path="/" component={RedirectControl} />
+                <Route exact path="/" component={RedirectControl} />
                 <Route path="/login" component={Login} />
                 <Route path="/home" component={Home} />
+                <Route path="/newQuestion" component={QuestionForm} />
               </>
             ) : (
               <p>Loading...</p>
