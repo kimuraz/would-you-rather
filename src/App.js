@@ -10,6 +10,7 @@ import RedirectControl from './components/RedirectControl';
 import Login from './components/Login';
 import Home from './components/Home';
 import QuestionForm from './components/QuestionForm';
+import QuestionDetail from './components/QuestionDetail';
 import {Container, NavBar} from './components/ui';
 
 import {loadInitialData} from './actions/shared';
@@ -47,6 +48,7 @@ class App extends React.Component {
                 <Route path="/login" component={Login} />
                 <Route path="/home" component={Home} />
                 <Route path="/add" component={QuestionForm} />
+                <Route path="/questions/:question_id" component={QuestionDetail} />
               </>
             ) : (
               <p>Loading...</p>

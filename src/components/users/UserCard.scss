@@ -1,0 +1,15 @@
+@import '../ui/variables';
+
+.user-card {
+  display: flex;
+  align-items: center;
+  width: 300px !important;
+  margin: auto;
+  img {
+    width: 80px;
+  }
+  .user-info {
+    margin-left: 20px;
+    color: $primary;
+  }
+}
