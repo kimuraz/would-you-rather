@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment';
+import {NavLink as Link} from 'react-router-dom';
 import {FaQuestionCircle} from 'react-icons/fa';
 
 import {voteQuestion} from '../../actions/users';
@@ -67,6 +68,9 @@ class QuestionCard extends React.PureComponent {
 
         <div className="info">
           <br />
+          <Link to={`/questions/${question.id}`} color="primary">
+            <Button color="primary">Details</Button>
+          </Link>
           {!authUser.answers[question.id] && (
             <Button onClick={this.vote} color="secondary">
               Vote

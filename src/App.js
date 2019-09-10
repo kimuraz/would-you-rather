@@ -46,7 +46,7 @@ class App extends React.Component {
                 <Route exact path="/" component={RedirectControl} />
                 <Route path="/login" component={Login} />
                 <Route path="/home" component={Home} />
-                <Route path="/newQuestion" component={QuestionForm} />
+                <Route path="/add" component={QuestionForm} />
               </>
             ) : (
               <p>Loading...</p>
