@@ -1,0 +1,24 @@
+@import './ui/variables';
+
+.question-form-container {
+  width: 100%;
+  > .card {
+    margin: auto;
+  }
+  .question-layout {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    .input-holder {
+      flex: 1;
+      text-align: center;
+      padding-right: 10px;
+      > input {
+        width: 100%;
+      }
+    }
+  }
+  button {
+    width: 100%;
+  }
+}
