@@ -14,14 +14,17 @@ const questions = (state = {}, action) => {
       const {vote} = action;
       return {
         ...state,
-        [vote.qid]: {
-          ...state.questions[vote.qid],
-          [vote.answer]: {
-            votes: [
-              ...state.questions[vote.qid][vote.answer].votes,
-              vote.authedUser,
-            ],
-            text: state.questions[vote.qid][vote.answer].text,
+        questions: {
+          ...state.questions,
+          [vote.qid]: {
+            ...state.questions[vote.qid],
+            [vote.answer]: {
+              votes: [
+                ...state.questions[vote.qid][vote.answer].votes,
+                vote.authedUser,
+              ],
+              text: state.questions[vote.qid][vote.answer].text,
+            },
           },
         },
       };

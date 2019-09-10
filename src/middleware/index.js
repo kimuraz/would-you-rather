@@ -1,4 +1,7 @@
-import { applyMiddleware } from 'redux';
+import {applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 
-export default applyMiddleware(thunk);
+export default compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
+);
