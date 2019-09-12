@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import QuestionForm from './components/QuestionForm';
 import QuestionDetail from './components/QuestionDetail';
+import Leaderboard from './components/Leaderboard';
 import {Container, NavBar} from './components/ui';
 
 import {loadInitialData} from './actions/shared';
@@ -25,20 +26,31 @@ class App extends React.Component {
 
   logout = () => {
     this.props.dispatch(setAuthUser(null));
-  }
+  };
 
   render() {
     return (
       <div className="App">
         <Router>
           <NavBar>
+            <Link to="/home" activeClassName="active">
+              Home
+            </Link>
+            <Link to="/add" activeClassName="active">
+              New Question
+            </Link>
+            <Link to="/leaderboard" activeClassName="active">
+              Leader Board
+            </Link>
+            {!this.props.authUser && (
+              <Link to="/login" activeClassName="active">
+                Login
+              </Link>
+            )}
             {this.props.authUser && (
-              <>
-                <Link to="/home" activeClassName="active">Home</Link>
-                <Link to="/add" activeClassName="active">New Question</Link>
-                <Link to="/leaderboard" activeClassName="active">Leader Board</Link>
-                <Link to="/" exact onClick={this.logout}>Logout</Link>
-              </>
+              <Link to="/" exact onClick={this.logout}>
+                ({this.props.authUser.name}) Logout
+              </Link>
             )}
           </NavBar>
           <Container>
@@ -48,7 +60,11 @@ class App extends React.Component {
                 <Route path="/login" component={Login} />
                 <Route path="/home" component={Home} />
                 <Route path="/add" component={QuestionForm} />
-                <Route path="/questions/:question_id" component={QuestionDetail} />
+                <Route path="/leaderboard" component={Leaderboard} />
+                <Route
+                  path="/questions/:question_id"
+                  component={QuestionDetail}
+                />
               </>
             ) : (
               <p>Loading...</p>

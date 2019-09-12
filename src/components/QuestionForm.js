@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {FaQuestionCircle} from 'react-icons/fa';
+import {NavLink as Link} from 'react-router-dom';
 
 import {Card, Input, Button} from './ui';
 
@@ -36,7 +37,7 @@ class QuestionForm extends React.Component {
   render() {
     return (
       <div className="question-form-container">
-        <Card title="Would you rather...">
+      {!!this.props.authUser ? <Card title="Would you rather...">
           <form onSubmit={this.addAndClean}>
             <div className="question-layout">
               <div className="input-holder">
@@ -64,7 +65,7 @@ class QuestionForm extends React.Component {
               Save
             </Button>
           </form>
-        </Card>
+        </Card> : <Link to="/login">Please, login to create a question.</Link>}
       </div>
     );
   }

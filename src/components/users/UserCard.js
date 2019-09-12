@@ -7,8 +7,7 @@ import './UserCard.scss';
 class UserCard extends React.Component {
   getScore = () => {
     const {user} = this.props;
-    const total = new Set([...Object.keys(user.answers), ...user.questions]);
-    return total.size;
+    return Object.keys(user.answers).length + user.questions.length;
   };
   render() {
     const {user, title} = this.props;
@@ -19,6 +18,7 @@ class UserCard extends React.Component {
           <div className="user-info">
             <p>Name: {user.name}</p>
             <p>Score: {this.getScore()}</p>
+            <p>Answers: {Object.keys(user.answers).length || 0} / Questions: {user.questions.length}</p>
           </div>
         </div>
       </Card>

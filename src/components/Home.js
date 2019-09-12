@@ -18,23 +18,23 @@ class Home extends React.Component {
   };
 
   getQuestions = () => {
-    const {questions} = this.props;
+    const {questions, authUser} = this.props;
     const qArr = Object.values(questions);
 
     const filterFunc = {
       'All': () => true,
-      'Not voted': q => !Object.keys(this.props.authUser.answers).includes(q.id),
-      'Voted': q => Object.keys(this.props.authUser.answers).includes(q.id)
+      'Not voted': q => !Object.keys(authUser.answers).includes(q.id),
+      'Voted': q => Object.keys(authUser.answers).includes(q.id)
     };
 
-    return qArr.filter(filterFunc[this.state.selectedTab]);
+    return qArr.filter(filterFunc[!!authUser ? this.state.selectedTab : 'All']);
   }
 
   render() {
     return (
       <div className="home">
         <div className="filters">
-          {this.tabs.map(t => (
+          {this.props.authUser && this.tabs.map(t => (
             <React.Fragment key={t}>
               <input
                 type="radio"

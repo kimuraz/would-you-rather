@@ -15,16 +15,16 @@ class QuestionCard extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const {authUser, question} = this.props;
+    const {authUser, question} = props;
 
     this.state = {
-      selectedAnswer: authUser.answers[question.id],
+      selectedAnswer: authUser ? authUser.answers[question.id] : {},
     };
   }
 
   changeSelect(selectedAnswer) {
     const {authUser, question} = this.props;
-    if (!authUser.answers[question.id]) {
+    if (authUser && !authUser.answers[question.id]) {
       this.setState({selectedAnswer});
     }
   }
@@ -71,7 +71,7 @@ class QuestionCard extends React.PureComponent {
           <Link to={`/questions/${question.id}`} color="primary">
             <Button color="primary">Details</Button>
           </Link>
-          {!authUser.answers[question.id] && (
+          {!!(authUser && !authUser.answers[question.id]) && (
             <Button onClick={this.vote} color="secondary">
               Vote
             </Button>
