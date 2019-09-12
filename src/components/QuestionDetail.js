@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {withRouter, NavLink as Link} from 'react-router-dom';
 import PieChart from 'react-minimal-pie-chart';
 
 import UserCard from './users/UserCard';
@@ -23,7 +23,13 @@ class QuestionDetail extends React.Component {
   }
 
   setLabels = ({data, dataIndex}) => {
-    return `${data[dataIndex].title} (${data[dataIndex].value})`;
+    const {question} = this.state;
+    const totalVotes =
+      question.optionOne.votes.length + question.optionTwo.votes.length;
+    return `${data[dataIndex].title} (${(
+      (data[dataIndex].value / totalVotes) *
+      100
+    ).toFixed(2)} %)`;
   };
 
   render() {
@@ -31,9 +37,11 @@ class QuestionDetail extends React.Component {
     const {question} = this.state;
     return (
       <div className="question-detail">
+        <h2>Would you rather...</h2>
         {question && (
           <>
-            {authUser.answers[question.id] && (
+            <p>{question.optionOne.text} OR {question.optionTwo.text}?</p>
+            {authUser && authUser.answers[question.id] && (
               <PieChart
                 lineWidth={20}
                 rounded
@@ -57,6 +65,8 @@ class QuestionDetail extends React.Component {
               />
             )}
             <UserCard user={users[question.author]} title="The Author" />
+            <br/>
+            {!authUser && <Link to="/login">Login to vote!</Link>}
           </>
         )}
       </div>

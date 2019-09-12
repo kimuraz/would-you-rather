@@ -1,5 +1,11 @@
+@import './ui/variables';
+
 .question-detail {
+  text-align: center;
   padding: 30px 0;
+  > p {
+    color: $light-secondary;
+  }
   > .card {
     margin: auto;
     margin-top: 40px;
