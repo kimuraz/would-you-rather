@@ -6,6 +6,7 @@ import {NavLink as Link} from 'react-router-dom';
 import {Card, Input, Button} from './ui';
 
 import {addQuestion} from '../actions/questions';
+import {updateUser} from '../actions/users';
 
 import './QuestionForm.scss';
 
@@ -30,6 +31,7 @@ class QuestionForm extends React.Component {
         addQuestion({optionOneText, optionTwoText, author: authUser.id}),
       ).then(() => {
         this.setState({ optionOneText: '', optionTwoText: '' });
+        dispatch(updateUser(authUser));
       });
     }
   }

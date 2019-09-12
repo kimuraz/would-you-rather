@@ -1,4 +1,9 @@
-import {SET_AUTH_USER, RECEIVE_USERS, VOTE_QUESTION} from '../actions/types';
+import {
+  SET_AUTH_USER,
+  RECEIVE_USERS,
+  UPDATE_USER,
+  VOTE_QUESTION,
+} from '../actions/types';
 
 const initialState = {
   authUser: null,
@@ -11,6 +16,11 @@ const users = (state = initialState, action) => {
       return {...state, authUser: action.user};
     case RECEIVE_USERS:
       return {...state, users: action.users};
+    case UPDATE_USER:
+      return {
+        ...state,
+        users: {...state.users, [action.user.id]: {...action.user}},
+      };
     case VOTE_QUESTION:
       return {
         ...state,

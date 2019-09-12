@@ -4,7 +4,7 @@ import moment from 'moment';
 import {NavLink as Link} from 'react-router-dom';
 import {FaQuestionCircle} from 'react-icons/fa';
 
-import {voteQuestion} from '../../actions/users';
+import {voteQuestion, updateUser} from '../../actions/users';
 import {computeQuestion} from '../../actions/questions';
 
 import {Button, Card} from '../ui';
@@ -42,6 +42,7 @@ class QuestionCard extends React.PureComponent {
       dispatch(
         voteQuestion({id: question.id, answer: this.state.selectedAnswer}),
       );
+      dispatch(updateUser(authUser));
     });
   };
 
