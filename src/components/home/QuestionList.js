@@ -8,7 +8,7 @@ class QuestionList extends React.PureComponent {
     const {questions} = this.props;
     return (
       <ul className="question-list">
-        {questions.map(q => (
+        {[...questions].sort((q1, q2) => q2.timestamp - q1.timestamp).map(q => (
           <li key={q.id}>
             <QuestionCard question={q} />
           </li>
