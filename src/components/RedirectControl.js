@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 class RedirectControl extends React.PureComponent {
   render() {
-    return <Redirect to={`${!!this.props.authUser ? 'home' : 'login'}`} />;
+    return <Redirect to={`${!!this.props.authUser ? '/home' : '/login'}`} />;
   }
 }
 

@@ -3,9 +3,11 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink as Link,
+  Switch,
 } from 'react-router-dom';
 import {connect} from 'react-redux';
 
+import ProtectedRoute from './components/ProtectedRoute';
 import RedirectControl from './components/RedirectControl';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -55,17 +57,17 @@ class App extends React.Component {
           </NavBar>
           <Container>
             {!this.props.loading ? (
-              <>
-                <Route exact path="/" component={RedirectControl} />
+              <Switch>
+                <Route path="/" exact component={RedirectControl} />
                 <Route path="/login" component={Login} />
-                <Route path="/home" component={Home} />
-                <Route path="/add" component={QuestionForm} />
-                <Route path="/leaderboard" component={Leaderboard} />
-                <Route
+                <ProtectedRoute path="/home" component={Home} />
+                <ProtectedRoute path="/add" component={QuestionForm} />
+                <ProtectedRoute path="/leaderboard" component={Leaderboard} />
+                <ProtectedRoute
                   path="/questions/:question_id"
                   component={QuestionDetail}
                 />
-              </>
+              </Switch>
             ) : (
               <p>Loading...</p>
             )}

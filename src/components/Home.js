@@ -9,7 +9,7 @@ class Home extends React.Component {
 
     this.tabs = ['All', 'Not voted', 'Voted'];
     this.state = {
-      selectedTab: 'All',
+      selectedTab: 'Not voted',
     };
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import {Button, Card, Select} from './ui';
 
@@ -15,9 +16,10 @@ class Login extends React.Component {
   }
 
   doLogin = () => {
+    const {dispatch, location, history} = this.props;
     if (this.state.selectedUser) {
-      this.props.dispatch(setAuthUser(this.state.selectedUser));
-      this.props.history.replace('/home');
+      dispatch(setAuthUser(this.state.selectedUser));
+      history.replace(location.state ? location.state.referrer : 'home');
     }
   };
 
@@ -52,4 +54,4 @@ const mapStateToProps = state => ({
   users: state.users.users,
 });
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));
