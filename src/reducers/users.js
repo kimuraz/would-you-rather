@@ -1,8 +1,8 @@
 import {
   SET_AUTH_USER,
   RECEIVE_USERS,
-  UPDATE_USER,
   VOTE_QUESTION,
+  ADD_QUESTION,
 } from '../actions/types';
 
 const initialState = {
@@ -16,14 +16,33 @@ const users = (state = initialState, action) => {
       return {...state, authUser: action.user};
     case RECEIVE_USERS:
       return {...state, users: action.users};
-    case UPDATE_USER:
+    case ADD_QUESTION:
       return {
         ...state,
-        users: {...state.users, [action.user.id]: {...action.user}},
+        users: {
+          ...state.users,
+          [state.authUser.id]: {
+            ...state.users[state.authUser.id],
+            questions: [
+              ...state.users[state.authUser.id].questions,
+              action.question.id,
+            ],
+          },
+        },
       };
     case VOTE_QUESTION:
       return {
         ...state,
+        users: {
+          ...state.users,
+          [state.authUser.id]: {
+            ...state.users[state.authUser.id],
+            answers: {
+              ...state.users[state.authUser.id].answers,
+              [action.vote.id]: action.vote.answer,
+            },
+          },
+        },
         authUser: {
           ...state.authUser,
           answers: {

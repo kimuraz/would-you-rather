@@ -6,7 +6,6 @@ import {NavLink as Link, withRouter} from 'react-router-dom';
 import {Card, Input, Button} from './ui';
 
 import {addQuestion} from '../actions/questions';
-import {updateUser} from '../actions/users';
 
 import './QuestionForm.scss';
 
@@ -30,7 +29,6 @@ class QuestionForm extends React.Component {
       dispatch(
         addQuestion({optionOneText, optionTwoText, author: authUser.id}),
       ).then(() => {
-        dispatch(updateUser(authUser));
         this.props.history.push('/home');
       });
     }
