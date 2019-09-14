@@ -29,7 +29,7 @@ class QuestionDetail extends React.Component {
     return `${data[dataIndex].title} (${(
       (data[dataIndex].value / totalVotes) *
       100
-    ).toFixed(2)} %)`;
+    ).toFixed(2)} % - ${data[dataIndex].value} votes)`;
   };
 
   render() {
@@ -37,37 +37,44 @@ class QuestionDetail extends React.Component {
     const {question} = this.state;
     return (
       <div className="question-detail">
-        <h2>Would you rather...</h2>
-        {question && (
+        {question ? (
           <>
-            <p>{question.optionOne.text} OR {question.optionTwo.text}?</p>
+            <h2>Would you rather...</h2>
+            <p>
+              {question.optionOne.text} OR {question.optionTwo.text}?
+            </p>
             {authUser && authUser.answers[question.id] && (
-              <PieChart
-                lineWidth={20}
-                rounded
-                data={[
-                  {
-                    title: question.optionOne.text,
-                    value: question.optionOne.votes.length,
-                    color: '#1181C8',
-                  },
-                  {
-                    title: question.optionTwo.text,
-                    value: question.optionTwo.votes.length,
-                    color: '#84C7F2',
-                  },
-                ]}
-                label={this.setLabels}
-                labelStyle={{fontSize: '8px'}}
-                radius={40}
-                labelPosition={110}
-                style={{height: '220px'}}
-              />
+              <>
+                <PieChart
+                  lineWidth={20}
+                  rounded
+                  data={[
+                    {
+                      title: question.optionOne.text,
+                      value: question.optionOne.votes.length,
+                      color: '#1181C8',
+                    },
+                    {
+                      title: question.optionTwo.text,
+                      value: question.optionTwo.votes.length,
+                      color: '#84C7F2',
+                    },
+                  ]}
+                  label={this.setLabels}
+                  labelStyle={{fontSize: '8px'}}
+                  radius={40}
+                  labelPosition={110}
+                  style={{height: '220px'}}
+                />
+                <p>You voted "{question[authUser.answers[question.id]].text}"</p>
+              </>
             )}
             <UserCard user={users[question.author]} title="The Author" />
-            <br/>
+            <br />
             {!authUser && <Link to="/login">Login to vote!</Link>}
           </>
+        ) : (
+          <h2>404 - Oops, Question not found!</h2>
         )}
       </div>
     );
