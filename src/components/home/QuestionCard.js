@@ -32,6 +32,11 @@ class QuestionCard extends React.PureComponent {
   vote = () => {
     const {dispatch, authUser, question} = this.props;
 
+    if (!this.state.selectedAnswer) {
+      alert('Please, select an answer first!');
+      return;
+    }
+
     dispatch(
       computeQuestion({
         authedUser: authUser.id,
